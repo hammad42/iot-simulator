@@ -12,6 +12,8 @@ def publish_sensor(project_id, topic_id,data,origin='python-sample',username='gc
     returns (str): topic path id
     """
     from google.cloud import pubsub_v1
+    #import os
+    #os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="cred.json"
 
     publisher = pubsub_v1.PublisherClient()
     topic_path = publisher.topic_path(project_id, topic_id)
@@ -19,7 +21,7 @@ def publish_sensor(project_id, topic_id,data,origin='python-sample',username='gc
     future = publisher.publish(
         topic_path, data, origin=origin, username=username
     )
-    print(future.result())
+    #print(future.result())
 
 
     return "Published messages with custom attributes to {} ".format(topic_path) 
